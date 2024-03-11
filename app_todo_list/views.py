@@ -8,7 +8,7 @@ from app_todo_list.models import Task, Tag
 
 class IndexListView(generic.ListView):
     model = Task
-    queryset = Task.objects.all().order_by("boolean")
+    queryset = Task.objects.all().order_by("boolean", "-datetime")
     template_name = "app_todo_list/index.html"
     paginate_by = 3
 
