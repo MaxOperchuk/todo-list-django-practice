@@ -3,7 +3,9 @@
 {% block content %}
     <h1>
       Todo list
-      <a href="{% url 'app_todo_list:create-task' %}">+</a>
+      <span class="h1-link">
+      <a href="{% url 'app_todo_list:create-task' %}">Add</a>
+      </span>
     </h1>
     <p>Welcome to the Best Todo List Ever!</p>
     <h2>Dynamic content</h2>
@@ -14,11 +16,15 @@
               <div class="task-item">
                 <li>
                   {% if task.boolean %}
-                    done
-                    <a href="{% url 'app_todo_list:complete-task' pk=task.pk %}">UNDO</a>
+                    <a class="undo-link" href="{% url 'app_todo_list:complete-task' pk=task.pk %}">
+                      UNDO
+                    </a>
+                    <strong>done</strong>
                   {% else %}
-                    not done
-                    <a href="{% url 'app_todo_list:complete-task' pk=task.pk %}">COMPLETE</a>
+                    <a class="complete-link" href="{% url 'app_todo_list:complete-task' pk=task.pk %}">
+                      COMPLETE
+                    </a>
+                    <strong>not done</strong>
                   {% endif %}
                 </li>
                 <li><strong>Content:</strong> {{ task.content }}</li>
@@ -32,8 +38,16 @@
                       {{ tag.name }},
                     {% endfor %}
                 </li>
-                <li><a href="{% url 'app_todo_list:update-task' pk=task.pk %}">Update-task</a></li>
-                <li><a href="{% url 'app_todo_list:delete-task' pk=task.pk %}">Delete-task</a></li>
+                <li class="task-action-link">
+                  <a href="{% url 'app_todo_list:update-task' pk=task.pk %}" class="update-task">
+                    Update-task</a>
+                </li>
+                <li class="task-action-link">
+                  <a href="{% url 'app_todo_list:delete-task' pk=task.pk %}" class="delete-task">
+                    Delete-task
+                  </a>
+                </li>
+              
               </div>
             {% endfor %}
         </ul>
