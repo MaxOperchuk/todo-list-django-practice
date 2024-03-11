@@ -10,7 +10,7 @@ class IndexListView(generic.ListView):
     model = Task
     queryset = Task.objects.all().order_by("boolean")
     template_name = "app_todo_list/index.html"
-    paginate_by = 5
+    paginate_by = 3
 
 
 class TaskCreateView(generic.CreateView):
@@ -42,6 +42,17 @@ class TagListView(generic.ListView):
 
 
 class TagCreateView(generic.CreateView):
+    model = Tag
+    fields = "__all__"
+    success_url = reverse_lazy("app_todo_list:tag-list")
+
+
+class TagDeleteView(generic.DeleteView):
+    model = Tag
+    success_url = reverse_lazy("app_todo_list:tag-list")
+
+
+class TagUpdateView(generic.UpdateView):
     model = Tag
     fields = "__all__"
     success_url = reverse_lazy("app_todo_list:tag-list")
