@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>
+      Todo list
+      <span class="h1-link">
+      <a href="{% url 'app_todo_list:create-task' %}">Add</a>
+      </span>
+    </h1>
+    <p>Welcome to the Best Todo List Ever!</p>
+    <h2>Dynamic content</h2>
+    <p>some text</p>
+    <div class="container">
+        <ul class="task-list">
+            {% for task in task_list %}
+              <div class="task-item">
+                <li>
+                  {% if task.boolean %}
+                    <a class="undo-link" href="{% url 'app_todo_list:complete-task' pk=task.pk %}">
+                      UNDO
+                    </a>
+                    <strong>done</strong>
+                  {% else %}
+                    <a class="complete-link" href="{% url 'app_todo_list:complete-task' pk=task.pk %}">
+                      COMPLETE
+                    </a>
+                    <strong>not done</strong>
+                  {% endif %}
+                </li>
+                <li><strong>Content:</strong> {{ task.content }}</li>
+                <li>
+                  <strong>Created at:</strong> {{ task.datetime }}
+                </li>
+                {% if task.deadline %}
+                <li><strong>Deadline:</strong> {{ task.deadline }}</li>
+                {% endif %}
+                <li>
+                    <strong>Tags:</strong>
+                    {% for tag in task.tag.all %}
+                      {{ tag.name }},
+                    {% endfor %}
+                </li>
+                <li class="task-action-link">
+                  <a href="{% url 'app_todo_list:update-task' pk=task.pk %}" class="update-task">
+                    Update-task</a>
+                </li>
+                <li class="task-action-link">
+                  <a href="{% url 'app_todo_list:delete-task' pk=task.pk %}" class="delete-task">
+                    Delete-task
+                  </a>
+                </li>
+              
+              </div>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
