@@ -28,7 +28,9 @@
                   {% endif %}
                 </li>
                 <li><strong>Content:</strong> {{ task.content }}</li>
-                <li><strong>Created at:</strong> {{ task.datetime }}</li>
+                <li>
+                  <strong>Created at:</strong> {{ task.datetime }}
+                </li>
                 {% if task.deadline %}
                 <li><strong>Deadline:</strong> {{ task.deadline }}</li>
                 {% endif %}

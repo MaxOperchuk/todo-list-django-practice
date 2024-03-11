@@ -30,11 +30,16 @@ class TaskDeleteView(generic.DeleteView):
     success_url = reverse_lazy("app_todo_list:index")
 
 
-def complete_task_view(request: HttpRequest, pk: int):
+def complete_task_view(
+        request: HttpRequest,
+        pk: int
+) -> HttpResponseRedirect:
     task = Task.objects.get(pk=pk)
     task.boolean = not task.boolean
     task.save()
-    return HttpResponseRedirect(reverse_lazy("app_todo_list:index"))
+    return HttpResponseRedirect(
+        reverse_lazy("app_todo_list:index")
+    )
 
 
 class TagListView(generic.ListView):
