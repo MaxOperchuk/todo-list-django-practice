@@ -1,0 +1,30 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.task-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.task-item {
+    border: 1px solid #ccc; /* рамка */
+    border-radius: 10px; /* заокруглені краї */
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+
+.task-item li {
+    margin-bottom: 5px;
+}
+
+.task-item li strong {
+    font-weight: bold;
+}
+
+.task-item li:last-child {
+    margin-bottom: 0;
+}
